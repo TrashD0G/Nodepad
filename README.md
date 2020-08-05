@@ -1,2 +1,2 @@
-# Nodepad
+# Notepad
 Notepad application for Android
