@@ -59,7 +59,7 @@ class MainFragment : Fragment() {
         super.onStart()
 
 
-        Fmain_Btn_Next.setOnClickListener{
+        Btn_create_note.setOnClickListener{
             (activity as MainActivity).navController.navigate(R.id.action_mainFragment_to_testFragment)//Слушатель на кнопке
                                                                                                        //для переключения между
                                                                                                        //фрагментами
