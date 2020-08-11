@@ -1,4 +1,4 @@
-package com.artem.nodepad
+package com.artem.notepad
 
 import org.junit.Test
 
