@@ -19,7 +19,7 @@
         android:id="@+id/testFragment"
         android:name="com.artem.notepad.TestFragment"
         android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
+        tools:layout="@layout/fragment_open_note" >
         <action
             android:id="@+id/action_testFragment_to_mainFragment"
             app:destination="@id/mainFragment"
