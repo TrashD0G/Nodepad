@@ -24,8 +24,7 @@
             android:layout_height="60dp"
             android:text="Назад"
            />
-
-
+        
     </LinearLayout>
 
     <LinearLayout
