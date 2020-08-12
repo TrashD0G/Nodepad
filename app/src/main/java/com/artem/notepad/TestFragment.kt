@@ -2,6 +2,7 @@ package com.artem.notepad
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,8 +28,6 @@ class TestFragment : Fragment() {
         CreateHead = rootView.findViewById(R.id.note_head)
         CreateDescription = rootView.findViewById(R.id.note_description)
 
-
-
         return rootView
     }
 
@@ -36,7 +35,8 @@ class TestFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Ftest_Btn_Back.setOnClickListener{
-            createNote()
+
+            inputChecker()
             (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
         }
 
@@ -44,12 +44,19 @@ class TestFragment : Fragment() {
     }
 
 
-    private fun createNote(){ //Создание заметок
-        val head:String = CreateHead.text.toString()
-        val description:String = CreateDescription.text.toString()
-        NoteList.add(Note(head,description))
+    private fun inputChecker(){ //Проверка на ввод
+
+        val HEAD:String = CreateHead.text.toString()
+        val DESCRIPTION:String = CreateDescription.text.toString()
+
+        if (HEAD.trim().isNotEmpty() or DESCRIPTION.trim().isNotEmpty()){
+            createNote(HEAD,DESCRIPTION)
+        }
     }
 
+    private fun createNote(head:String,description:String){ //Создание заметок
+        NoteList.add(Note(head,description))
+    }
 
 
 
