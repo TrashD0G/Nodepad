@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_open_note.*
 
 
@@ -28,6 +29,7 @@ class TestFragment : Fragment() {
         CreateHead = rootView.findViewById(R.id.note_head)
         CreateDescription = rootView.findViewById(R.id.note_description)
 
+
         return rootView
     }
 
@@ -39,7 +41,6 @@ class TestFragment : Fragment() {
             inputChecker()
             (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
         }
-
 
     }
 
