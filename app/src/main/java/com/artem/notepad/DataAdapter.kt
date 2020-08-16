@@ -1,20 +1,20 @@
 package com.artem.notepad
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 
 public class DataAdapter(private val dataSet:List<Note>):RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {                            //Создает новый объект ViewHolder
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)//когда RecyclerView нуждается в этом
-        return ViewHolder(inflater)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)//когда RecyclerView нуждается в этом
+        return ViewHolder(itemView)
     }
 
     override fun getItemCount(): Int = dataSet.size //Возвращает размер коллекции
@@ -22,8 +22,8 @@ public class DataAdapter(private val dataSet:List<Note>):RecyclerView.Adapter<Da
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { //Устанавливает необходимые
         val note: Note = dataSet[position]                             //данные у созданых ViewHolder-ов
-
         holder.bind(note)
+
     }
 
 
@@ -31,6 +31,8 @@ public class DataAdapter(private val dataSet:List<Note>):RecyclerView.Adapter<Da
 
         var listTitleView:TextView? = null
         var listDescriptionView:TextView? = null
+        var context:Context = itemView.context
+        private val intent = Intent(context,OpenNoteActivity::class.java)
 
         init {
             listTitleView = itemView.findViewById(R.id.list_title)  //Ссылки на элементы
@@ -39,12 +41,8 @@ public class DataAdapter(private val dataSet:List<Note>):RecyclerView.Adapter<Da
 
             itemView.setOnClickListener{
                 val position:Int = adapterPosition
-                Toast.makeText(itemView.context,"You clicked on item # ${position + 1}",Toast.LENGTH_SHORT).show()
-
-                val activity = it.context
-                (activity as MainActivity).navController.navigate(R.id.action_mainFragment_to_testFragment)
-
-
+                intent.putExtra("itemPosition",position)
+                context.startActivity(intent)
             }
 
         }

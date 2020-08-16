@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestFragment"
+    tools:context=".CreateNoteFragment"
     android:orientation="vertical">
 
 
@@ -15,7 +15,7 @@
         >
 
         <Button
-            android:id="@+id/Ftest_Btn_Back"
+            android:id="@+id/fragment_Btn_ok"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="5dp"
@@ -31,13 +31,13 @@
         android:orientation="vertical"
         >
         <EditText
-            android:id="@+id/note_head"
+            android:id="@+id/fragment_note_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/note_head_hint"
             />
         <EditText
-            android:id="@+id/note_description"
+            android:id="@+id/fragment_note_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"

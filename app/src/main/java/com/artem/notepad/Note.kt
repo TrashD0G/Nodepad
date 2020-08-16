@@ -5,5 +5,4 @@ package com.artem.notepad
 data class Note(val param_head:String, val param_description:String) {
 
 
-
 }

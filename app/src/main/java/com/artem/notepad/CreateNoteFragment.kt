@@ -2,17 +2,15 @@ package com.artem.notepad
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_open_note.*
+import kotlinx.android.synthetic.main.fragment_create_note.*
 
 
-class TestFragment : Fragment() {
+class CreateNoteFragment : Fragment() {
 
     private lateinit var CreateHead:EditText
     private lateinit var CreateDescription:EditText
@@ -24,10 +22,10 @@ class TestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_open_note, container, false)
+        rootView = inflater.inflate(R.layout.fragment_create_note, container, false)
 
-        CreateHead = rootView.findViewById(R.id.note_head)
-        CreateDescription = rootView.findViewById(R.id.note_description)
+        CreateHead = rootView.findViewById(R.id.fragment_note_head)
+        CreateDescription = rootView.findViewById(R.id.fragment_note_description)
 
 
         return rootView
@@ -36,7 +34,7 @@ class TestFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Ftest_Btn_Back.setOnClickListener{
+        fragment_Btn_ok.setOnClickListener{
 
             inputChecker()
             (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
