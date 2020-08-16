@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_main.*
 
+lateinit var recyclerView: RecyclerView
 
 val NoteList = ArrayList<Note>()//Лист для заметок
 
 class MainFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+
     private lateinit var rootView: View
 
     override fun onCreateView(
@@ -32,9 +33,7 @@ class MainFragment : Fragment() {
 
         recyclerView.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))//Линия разделение
                                                                                                    //между элементами списка
-
-
-
+        
         return rootView
     }
 
