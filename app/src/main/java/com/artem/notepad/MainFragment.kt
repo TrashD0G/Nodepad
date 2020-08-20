@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
 
         recyclerView.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))//Линия разделение
                                                                                                    //между элементами списка
-        
+
         return rootView
     }
 
