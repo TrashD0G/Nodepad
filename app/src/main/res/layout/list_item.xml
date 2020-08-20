@@ -6,8 +6,9 @@
     android:layout_gravity="center_horizontal"
     android:background="#B3E5FC"
     android:padding="16dp"
-
     >
+
+
 
     <TextView
         android:id="@+id/list_title"

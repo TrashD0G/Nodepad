@@ -6,33 +6,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 
-public class DataAdapter(private val dataSet:List<Note>):RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+ class DataAdapter(private val dataSet:List<Note>) : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {                            //Создает новый объект ViewHolder
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)//когда RecyclerView нуждается в этом
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        //Создает новый объект ViewHolder
+        //когда RecyclerView нуждается в этом
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
         return ViewHolder(itemView)
     }
 
     override fun getItemCount(): Int = dataSet.size //Возвращает размер коллекции
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) { //Устанавливает необходимые
-        val note: Note = dataSet[position]                             //данные у созданых ViewHolder-ов
-        holder.bind(note)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        //Устанавливает необходимые
+        //данные у созданых ViewHolder-ов
 
+        val note: Note = dataSet[position]
+        holder.bind(note)
     }
 
 
-    public class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-        var listTitleView:TextView? = null
-        var listDescriptionView:TextView? = null
-        var context:Context = itemView.context
-        private val intent = Intent(context,OpenNoteActivity::class.java)
+     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+         private var listTitleView:TextView? = null
+         private var listDescriptionView:TextView? = null
+         private var context:Context = itemView.context
+         private val intent = Intent(context,OpenNoteActivity::class.java)
 
         init {
             listTitleView = itemView.findViewById(R.id.list_title)  //Ссылки на элементы
@@ -48,8 +50,19 @@ public class DataAdapter(private val dataSet:List<Note>):RecyclerView.Adapter<Da
         }
 
         fun bind(note:Note){
-            listTitleView?.text = note.param_head
-            listDescriptionView?.text = note.param_description
+
+            if (note.param_head.length > 60) {
+                listTitleView?.text= note.param_head.substring(0, 60)
+            }
+            else {
+                listTitleView?.text = note.param_head
+            }
+            if (note.param_description.length> 90) {
+                listDescriptionView?.text = note.param_description.substring(0, 90)
+            }
+            else {
+                listDescriptionView?.text = note.param_description
+            }
         }
 
     }

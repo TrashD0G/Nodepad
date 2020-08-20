@@ -1,19 +1,21 @@
 package com.artem.notepad
 
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_create_note.*
 
 
 class CreateNoteFragment : Fragment() {
 
-    private lateinit var CreateHead:EditText
-    private lateinit var CreateDescription:EditText
+    private lateinit var createHead:EditText
+    private lateinit var createDescription:EditText
     private lateinit var rootView: View
 
 
@@ -24,8 +26,8 @@ class CreateNoteFragment : Fragment() {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_create_note, container, false)
 
-        CreateHead = rootView.findViewById(R.id.fragment_note_head)
-        CreateDescription = rootView.findViewById(R.id.fragment_note_description)
+        createHead = rootView.findViewById(R.id.fragment_note_head)
+        createDescription = rootView.findViewById(R.id.fragment_note_description)
 
 
         return rootView
@@ -37,19 +39,21 @@ class CreateNoteFragment : Fragment() {
         fragment_Btn_ok.setOnClickListener{
 
             inputChecker()
+            hideKeyboardFragment()
             (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
         }
 
     }
 
 
-    private fun inputChecker(){ //Проверка на ввод
+    private fun inputChecker(){
+        //Проверка на ввод
 
-        val HEAD:String = CreateHead.text.toString()
-        val DESCRIPTION:String = CreateDescription.text.toString()
+        val head:String = createHead.text.toString()
+        val description:String = createDescription.text.toString()
 
-        if (HEAD.trim().isNotEmpty() or DESCRIPTION.trim().isNotEmpty()){
-            createNote(HEAD,DESCRIPTION)
+        if (head.trim().isNotEmpty() or description.trim().isNotEmpty()) {
+            createNote(head,description)
         }
     }
 
@@ -57,6 +61,16 @@ class CreateNoteFragment : Fragment() {
         NoteList.add(Note(head,description))
     }
 
+    private fun hideKeyboardFragment(){
+        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val currentFocusedView = activity?.currentFocus
 
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(
+                currentFocusedView.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    }
 
 }
