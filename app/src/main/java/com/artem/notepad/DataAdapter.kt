@@ -11,26 +11,30 @@ import androidx.recyclerview.widget.RecyclerView
 
  class DataAdapter(private val dataSet:List<Note>) : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {                            //Создает новый объект ViewHolder
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)//когда RecyclerView нуждается в этом
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        //Создает новый объект ViewHolder
+        //когда RecyclerView нуждается в этом
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
         return ViewHolder(itemView)
     }
 
     override fun getItemCount(): Int = dataSet.size //Возвращает размер коллекции
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) { //Устанавливает необходимые
-        val note: Note = dataSet[position]                             //данные у созданых ViewHolder-ов
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        //Устанавливает необходимые
+        //данные у созданых ViewHolder-ов
+
+        val note: Note = dataSet[position]
         holder.bind(note)
     }
 
 
      class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-        var listTitleView:TextView? = null
-        var listDescriptionView:TextView? = null
-        var context:Context = itemView.context
-        private val intent = Intent(context,OpenNoteActivity::class.java)
+         private var listTitleView:TextView? = null
+         private var listDescriptionView:TextView? = null
+         private var context:Context = itemView.context
+         private val intent = Intent(context,OpenNoteActivity::class.java)
 
         init {
             listTitleView = itemView.findViewById(R.id.list_title)  //Ссылки на элементы

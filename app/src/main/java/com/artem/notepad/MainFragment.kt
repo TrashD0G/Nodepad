@@ -40,9 +40,9 @@ class MainFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Btn_create_note.setOnClickListener{
-            (activity as MainActivity).navController.navigate(R.id.action_mainFragment_to_testFragment)//Слушатель на кнопке
-                                                                                                       //для переключения между
-                                                                                                       //фрагментами
+            //Слушатель на кнопке для переключения между фрагментами
+
+            (activity as MainActivity).navController.navigate(R.id.action_mainFragment_to_testFragment)
         }
 
     }

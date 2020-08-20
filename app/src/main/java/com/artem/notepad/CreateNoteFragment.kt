@@ -46,7 +46,8 @@ class CreateNoteFragment : Fragment() {
     }
 
 
-    private fun inputChecker(){ //Проверка на ввод
+    private fun inputChecker(){
+        //Проверка на ввод
 
         val head:String = createHead.text.toString()
         val description:String = createDescription.text.toString()
