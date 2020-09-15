@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="com.artem.notepad.CreateNoteFragment"
+        android:name="com.artem.notepad.createNote.CreateNoteFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_create_note" >
         <action

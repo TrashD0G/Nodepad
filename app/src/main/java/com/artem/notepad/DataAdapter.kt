@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.artem.notepad.openNote.OpenNoteActivity
 
 
- class DataAdapter(private val dataSet:List<Note>) : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+class DataAdapter(private val dataSet:List<Note>) : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Создает новый объект ViewHolder
@@ -34,7 +35,7 @@ import androidx.recyclerview.widget.RecyclerView
          private var listTitleView:TextView? = null
          private var listDescriptionView:TextView? = null
          private var context:Context = itemView.context
-         private val intent = Intent(context,OpenNoteActivity::class.java)
+         private val intent = Intent(context, OpenNoteActivity::class.java)
 
         init {
             listTitleView = itemView.findViewById(R.id.list_title)  //Ссылки на элементы

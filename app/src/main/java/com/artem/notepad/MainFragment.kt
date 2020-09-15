@@ -1,9 +1,11 @@
 package com.artem.notepad
 
 import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,11 +15,10 @@ import kotlinx.android.synthetic.main.fragment_main.*
 lateinit var recyclerView: RecyclerView
 
 val NoteList = ArrayList<Note>()//Лист для заметок
+private lateinit var rootView: View
+
 
 class MainFragment : Fragment() {
-
-
-    private lateinit var rootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,7 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         Btn_create_note.setOnClickListener{
             //Слушатель на кнопке для переключения между фрагментами
 

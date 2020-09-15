@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Toolbar">
         <activity
-            android:name=".OpenNoteActivity"
+            android:name=".openNote.OpenNoteActivity"
             android:theme="@style/NoToolbar" />
         <activity android:name=".MainActivity">
             <intent-filter>
