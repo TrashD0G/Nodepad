@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -38,7 +39,10 @@ class CreateNoteFragment : Fragment() {
         binding.createNoteViewModel = viewModel
 
         viewModel.eventCreateNoteFinish.observe(viewLifecycleOwner,
-            Observer<Boolean> { hasFinished -> if (hasFinished) createNoteFinished() })
+            { hasFinished -> if (hasFinished) createNoteFinished() })
+
+        viewModel.eventInputCheckerEmpty.observe(viewLifecycleOwner,
+            {hasEmpty -> if (hasEmpty) createNoteIsEmpty()})
 
         return binding.root
     }
@@ -50,6 +54,14 @@ class CreateNoteFragment : Fragment() {
 
         (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
     }
+
+    private fun createNoteIsEmpty(){
+        hideKeyboardFragment()
+        (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
+        Toast.makeText(this.context,"Нельзя создавать пустые заметки!",Toast.LENGTH_LONG).show()
+    }
+
+
 
     private fun hideKeyboardFragment(){
         val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

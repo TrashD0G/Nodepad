@@ -1,8 +1,8 @@
 package com.artem.notepad.createNote
 
 
+
 import android.app.Application
-import android.util.Log
 import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -16,6 +16,12 @@ class CreateNoteViewModel(application: Application, private val head: EditText, 
   private val _eventCreateNoteFinish = MutableLiveData<Boolean>()
     val eventCreateNoteFinish: LiveData<Boolean>
         get() = _eventCreateNoteFinish
+
+
+    private val _eventInputCheckerEmpty = MutableLiveData<Boolean>()
+    val eventInputCheckerEmpty: LiveData<Boolean>
+        get() = _eventInputCheckerEmpty
+
 
 
     private fun createNote(head:String,description:String){ //Создание заметок
@@ -33,11 +39,13 @@ class CreateNoteViewModel(application: Application, private val head: EditText, 
 
         if (head.text.toString().trim().isNotEmpty() or description.text.toString().trim().isNotEmpty()) {
             createNote(head.text.toString(),description.text.toString())
+            _eventInputCheckerEmpty.value = false
             onCreateNoteFinish()
         }
-         else{ Log.i("MyTag", "head:$head")}
+         else{
+            _eventInputCheckerEmpty.value = true
+        }
     }
-
 
 
     fun onCreateNoteFinishComplete() {

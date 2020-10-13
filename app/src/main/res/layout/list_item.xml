@@ -4,8 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
-    android:background="#B3E5FC"
+    android:background="@drawable/custom_ripple"
+
     android:padding="16dp"
+
     >
 
 

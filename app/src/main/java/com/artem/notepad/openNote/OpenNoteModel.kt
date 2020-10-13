@@ -22,7 +22,6 @@ class OpenNoteModel(param_binding: ActivityOpenNoteBinding,param_notePosition: I
         // Установка значений в EditText при открытии активити
 
         val noteDataContainer = NoteList.get(position) //Получение объекта Note по номеру позиции
-
         val getHead:String = noteDataContainer.param_head //Получение введенных данных
         val getDescription:String = noteDataContainer.param_description
 
