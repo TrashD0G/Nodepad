@@ -3,25 +3,26 @@ package com.artem.notepad.createNote
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.artem.notepad.MainActivity
+import androidx.navigation.fragment.findNavController
 import com.artem.notepad.R
+import com.artem.notepad.database.Note
 import com.artem.notepad.databinding.FragmentCreateNoteBinding
+import com.artem.notepad.viewModel.NoteViewModel
 
 
 class CreateNoteFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateNoteBinding
-    private lateinit var viewModel:CreateNoteViewModel
-
+    private lateinit var mNoteViewModel: NoteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,20 +30,18 @@ class CreateNoteFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(
-            inflater,R.layout.fragment_create_note,container,false
+            inflater, R.layout.fragment_create_note, container, false
         )
 
         val head = binding.fragmentNoteHead
         val description = binding.fragmentNoteDescription
 
-        viewModel = ViewModelProvider(this,CreateNoteViewModelFactory(activity?.application!!,head,description)).get(CreateNoteViewModel::class.java)
-        binding.createNoteViewModel = viewModel
-
-        viewModel.eventCreateNoteFinish.observe(viewLifecycleOwner,
+        //ViewModel
+        mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
+        mNoteViewModel.eventCreateNoteFinish.observe(viewLifecycleOwner,
             { hasFinished -> if (hasFinished) createNoteFinished() })
 
-        viewModel.eventInputCheckerEmpty.observe(viewLifecycleOwner,
-            {hasEmpty -> if (hasEmpty) createNoteIsEmpty()})
+        binding.fragmentBtnOk.setOnClickListener { inputChecker(head, description) }
 
         return binding.root
     }
@@ -50,17 +49,27 @@ class CreateNoteFragment : Fragment() {
 
     private fun createNoteFinished(){
         hideKeyboardFragment()
-        viewModel.onCreateNoteFinishComplete()
+        mNoteViewModel.onCreateNoteFinishComplete()
 
-        (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
+        findNavController().navigate(R.id.action_createNoteFragment_to_mainFragment)
     }
 
-    private fun createNoteIsEmpty(){
-        hideKeyboardFragment()
-        (activity as MainActivity).navController.navigate(R.id.action_testFragment_to_mainFragment)
-        Toast.makeText(this.context,"Нельзя создавать пустые заметки!",Toast.LENGTH_LONG).show()
-    }
 
+    private fun inputChecker(head: EditText, description: EditText){
+
+        if (head.text.toString().trim().isNotEmpty() or description.text.toString().trim().isNotEmpty()) {
+
+            val note = Note(0, head.text.toString(), description.text.toString())
+            mNoteViewModel.addNote(note)
+            mNoteViewModel.onCreateNoteFinish()
+
+
+
+        }
+        else{
+            Toast.makeText(this.context, "Заметка пустая !", Toast.LENGTH_LONG).show()
+        }
+    }
 
 
     private fun hideKeyboardFragment(){
@@ -74,5 +83,6 @@ class CreateNoteFragment : Fragment() {
             )
         }
     }
+    
 
 }

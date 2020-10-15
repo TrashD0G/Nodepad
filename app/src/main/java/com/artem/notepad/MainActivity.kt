@@ -2,16 +2,18 @@ package com.artem.notepad
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navController = Navigation.findNavController(this,R.id.nav_host) // Поиск и получение id контроллера
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host)
+        return navController.navigateUp()
+    }
+
 }

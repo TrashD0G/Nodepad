@@ -3,11 +3,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="createNoteViewModel"
-            type="com.artem.notepad.createNote.CreateNoteViewModel" />
-    </data>
+
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -27,7 +23,6 @@
 
         <Button
             android:id="@+id/fragment_Btn_ok"
-            android:onClick="@{ () -> createNoteViewModel.inputChecker()}"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -62,12 +57,7 @@
             android:autofillHints=""
             android:inputType="text" />
 
-
-
     </LinearLayout>
-
-
-
 
 </LinearLayout>
 </layout>
