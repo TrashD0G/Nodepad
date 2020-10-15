@@ -8,25 +8,37 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.artem.notepad.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_mainFragment_to_testFragment"
-            app:destination="@id/testFragment"
+            android:id="@+id/action_mainFragment_to_createNoteFragment"
+            app:destination="@id/CreateNoteFragment"
             app:enterAnim="@anim/fragment_open_enter" />
         <argument
             android:name="myArg"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_mainFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.artem.notepad.CreateNoteFragment"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_create_note" >
+        android:id="@+id/CreateNoteFragment"
+        android:name="com.artem.notepad.createNote.CreateNoteFragment"
+        tools:layout="@layout/fragment_create_note">
         <action
-            android:id="@+id/action_testFragment_to_mainFragment"
+            android:id="@+id/action_createNoteFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/fragment_open_enter" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.artem.notepad.updateNote.UpdateFragment"
+        tools:layout="@layout/fragment_update">
+        <action
+            android:id="@+id/action_updateFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="currentNote"
+            app:argType="com.artem.notepad.database.Note" />
     </fragment>
 </navigation>
