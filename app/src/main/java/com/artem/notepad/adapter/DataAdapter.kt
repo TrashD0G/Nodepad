@@ -11,13 +11,13 @@ import com.artem.notepad.database.Note
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
-class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
     private var noteList = emptyList<Note>()
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bind(currentItem:Note){
+        fun bind(currentItem: Note){
 
             if (currentItem.param_head.length > 60) {
                 itemView.list_title.text = currentItem.param_head.substring(0, 60)
@@ -71,7 +71,7 @@ class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
 
 
-    fun setData(note:List<Note>){
+    fun setData(note: List<Note>){
         this.noteList = note
         notifyDataSetChanged()
     }

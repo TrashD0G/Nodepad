@@ -14,10 +14,6 @@ import com.artem.notepad.adapter.DataAdapter
 import com.artem.notepad.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
-
-
-
-
 class MainFragment : Fragment() {
 
     private lateinit var mNoteViewModel: NoteViewModel
@@ -38,7 +34,7 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)//Вертикальный список
         recyclerView.adapter = adapter            //Новый адаптер для установки
 
-        recyclerView.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))//Линия разделение
+        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))//Линия разделение
                                                                                                    //между элементами списка
 
           mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
@@ -54,9 +50,7 @@ class MainFragment : Fragment() {
             //Слушатель на кнопке для переключения между фрагментами
             findNavController().navigate(R.id.action_mainFragment_to_createNoteFragment)
         }
-
-
+        
     }
-
-
+    
 }

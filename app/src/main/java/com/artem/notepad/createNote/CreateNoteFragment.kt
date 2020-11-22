@@ -63,8 +63,6 @@ class CreateNoteFragment : Fragment() {
             mNoteViewModel.addNote(note)
             mNoteViewModel.onCreateNoteFinish()
 
-
-
         }
         else{
             Toast.makeText(this.context, "Заметка пустая !", Toast.LENGTH_LONG).show()
