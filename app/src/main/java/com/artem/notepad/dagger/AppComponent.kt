@@ -1,8 +1,7 @@
 package com.artem.notepad.dagger
 
 import com.artem.notepad.MainFragment
-import com.artem.notepad.createNote.CreateNoteFragment
-import com.artem.notepad.viewModel.NoteViewModel
+
 import dagger.Component
 
 
@@ -10,5 +9,5 @@ import dagger.Component
 interface AppComponent {
 
     fun injectMainFragment(mainFragment: MainFragment)
-    
+
 }
