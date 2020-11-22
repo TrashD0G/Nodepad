@@ -10,7 +10,5 @@ import dagger.Component
 interface AppComponent {
 
     fun injectMainFragment(mainFragment: MainFragment)
-
-
-
+    
 }
