@@ -1,6 +1,11 @@
 # Notepad
 Приложение для заметок на Android
 
+![Android_notepad](https://user-images.githubusercontent.com/50766171/99917459-40942f00-2d32-11eb-8689-daf2d3b6691d.gif)  
+
+
+
+
 Реализованны такие функции как:  
 1.Создание заметок  
 2.Изменение/открытие заметок   
