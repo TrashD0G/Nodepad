@@ -53,7 +53,7 @@ private lateinit var mNoteViewModel: NoteViewModel
         if (head.trim().isNotEmpty() or description.trim().isNotEmpty()) {
 
 
-         val updateNote = Note(args.currentNote.id,head,description)
+         val updateNote = Note(args.currentNote.id, head, description)
 
             mNoteViewModel.updateNote(updateNote)
             hideKeyboardFragment()
@@ -67,7 +67,7 @@ private lateinit var mNoteViewModel: NoteViewModel
 
     private fun deleteNote(){
         mNoteViewModel.deleteNote(args.currentNote)
-        Toast.makeText(requireContext(),"Записка удалена!",Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(),"Записка удалена!", Toast.LENGTH_LONG).show()
         hideKeyboardFragment()
         findNavController().navigate(R.id.action_updateFragment_to_mainFragment)
     }

@@ -18,8 +18,8 @@ import kotlinx.coroutines.launch
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
-    val readAllData:LiveData<List<Note>>
-    private val repository:NoteRepository
+    val readAllData: LiveData<List<Note>>
+    private val repository: NoteRepository
 
 
     private val _eventCreateNoteFinish = MutableLiveData<Boolean>()
@@ -35,15 +35,15 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
-    fun addNote(note:Note){
+    fun addNote(note: Note){
         viewModelScope.launch(Dispatchers.IO) { repository.addNote(note) }
     }
 
-    fun updateNote(note:Note){
+    fun updateNote(note: Note){
         viewModelScope.launch(Dispatchers.IO) { repository.updateNote(note) }
     }
 
-    fun deleteNote(note:Note){
+    fun deleteNote(note: Note){
         viewModelScope.launch(Dispatchers.IO) { repository.deleteNote(note) }
     }
 

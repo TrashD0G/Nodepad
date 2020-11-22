@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.artem.notepad.adapter.DataAdapter
+import com.artem.notepad.dagger.DaggerAppComponent
 import com.artem.notepad.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
-
-
-
-
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
     private lateinit var mNoteViewModel: NoteViewModel
-    private val adapter = DataAdapter()
+
+    @Inject
+    lateinit var  adapter:DataAdapter
+
     lateinit var recyclerView: RecyclerView
     private lateinit var rootView: View
 
@@ -35,10 +36,15 @@ class MainFragment : Fragment() {
         rootView = inflater.inflate(R.layout.fragment_main, container, false)
         recyclerView = rootView.findViewById(R.id.list_recycle_view)
 
-        recyclerView.layoutManager = LinearLayoutManager(activity)//Вертикальный список
-        recyclerView.adapter = adapter            //Новый адаптер для установки
 
-        recyclerView.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))//Линия разделение
+        DaggerAppComponent.create().injectMainFragment(this)
+
+
+
+        recyclerView.layoutManager = LinearLayoutManager(activity)//Вертикальный список
+        recyclerView.adapter = adapter                            //Новый адаптер для установки
+
+        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))//Линия разделение
                                                                                                    //между элементами списка
 
           mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
@@ -54,9 +60,7 @@ class MainFragment : Fragment() {
             //Слушатель на кнопке для переключения между фрагментами
             findNavController().navigate(R.id.action_mainFragment_to_createNoteFragment)
         }
-
-
+        
     }
-
-
+    
 }
